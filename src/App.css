@@ -1,5 +1,13 @@
+/* App.css */
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Esto podría necesitar ser 100vh dependiendo de cómo se muestra */
+}
+
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
