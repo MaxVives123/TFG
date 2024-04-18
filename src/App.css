@@ -1,8 +1,20 @@
 /* App.css */
 html, body, #root, .App {
+      background-color: #00000091; /* Fondo negro para todo el cuerpo de la página */
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   height: 100%; /* Esto podría necesitar ser 100vh dependiendo de cómo se muestra */
+  overflow: hidden;
+}
+/* Estilos específicos para el componente FAQ */
+.faq-container {
+  background-color: #f8f9fa; /* Fondo gris claro para el componente FAQ */
+  padding: 20px;
+  margin: 20px auto; /* Centrar el FAQ en la página */
+  width: 80%; /* Ancho relativo para mejor visualización */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .App {
