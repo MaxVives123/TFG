@@ -4,14 +4,10 @@
   }
   
   .carousel img {
-
+    height: 100vh;
+    width: 100%;
     object-fit: cover; /* Esto evita que la imagen se distorsione */
 
   }
-  
-  img {
-    height: 100vh;
-    width: 100%;
-    object-fit: cover; /* This will cover the area without distorting the aspect ratio */
-  }
+
   

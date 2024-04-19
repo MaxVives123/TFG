@@ -4,7 +4,7 @@ html, body, #root, .App {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  height: 100%; /* Esto podría necesitar ser 100vh dependiendo de cómo se muestra */
+  height: 100vh; /* Esto podría necesitar ser 100vh dependiendo de cómo se muestra */
   overflow: hidden;
 }
 /* Estilos específicos para el componente FAQ */
