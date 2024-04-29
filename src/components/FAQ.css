@@ -1,0 +1,24 @@
+.p-2{
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    --sf-rojo: #dc0526;
+    --sf-azul: #77b5ce;
+    --sf-gris: #f2f2f2;
+    --sf-madera: #50362a;
+    --sf-portlet-margin-top: 30px;
+    --sf-home-inst-min-height: 300px;
+    -webkit-font-smoothing: antialiased;
+    font-size: 16px;
+    color: black;
+    font-family: "akzidenz-grotesk_bqregular"!important;
+    line-height: normal!important;
+    box-sizing: border-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    width: 1296px;
+    height: 405px;
+    margin-left: -23px;
+    background-image: url("https://d2prydcqrq5962.cloudfront.net/image/journal/article?img_id=833661&t=1703492796507");
+}

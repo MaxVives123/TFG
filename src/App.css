@@ -20,8 +20,22 @@ html, body, #root, .App {
 .App {
   text-align: center;
   height: 100%;
+  justify-content: flex-end;
+  display:flex;
 }
-
+.nav-container {
+  display: flex;
+  align-items: center;
+}
+.signIn-container {
+  flex: 0 1 80%; /* Ajusta este valor basado en el espacio que quieras dejar */
+  display: flex;
+  justify-content: flex-end;
+}
+/* Establece un ancho máximo a la barra de navegación para dejar espacio al botón */
+.barra-navegacion {
+  flex: 0 1 1000%; /* O ajusta este valor según tus necesidades */
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
