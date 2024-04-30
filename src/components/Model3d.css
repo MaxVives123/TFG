@@ -1,7 +1,8 @@
 .button-overlay-container {
   position: absolute;
   top: 7%;
-  left: 20px;
+  left: 50%;
+  transform: translateX(-50%);  /* Desplazar el elemento a la izquierda la mitad de su ancho */
   z-index: 1001; /* Ajuste fino para asegurar que esté sobre otros elementos */
 }
 
@@ -31,3 +32,62 @@
   font-family: Arial, sans-serif;
   font-size: 14px;
 }
+.text-overlay-container-ELOTRO {
+  position: absolute;
+  top: 11%;
+  right: 120px; /* Cambiado de 'left' a 'right' */
+  width: 200px;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.custom-slider {
+  position: absolute;
+  bottom: 10px; /* Espacio desde el fondo del contenedor de Cesium */
+  left: 49.5%; /* Centrado horizontal */
+  transform: translateX(-50%); /* Ajuste fino para centrar exactamente */
+  width: 80%; /* Ancho del slider */
+}
+
+.custom-slider .form-range {
+  cursor: pointer; /* Cursor tipo pointer para indicar que es interactivo */
+  background-color: #f8f9fa; /* Color de fondo del slider */
+  border-radius: 10px; /* Bordes redondeados */
+  height: 20px; /* Altura del slider */
+  -webkit-appearance: none; /* Necesario para estilizar en Chrome */
+}
+
+.custom-slider .form-range:focus {
+  box-shadow: none; /* Elimina el shadow que Bootstrap aplica en :focus */
+}
+
+.custom-slider .form-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -4px; /* Ajuste necesario para alinear con la barra en Chrome */
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border: none;
+  border-radius: 50%;
+}
+
+.custom-slider .form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #007bff;
+}
+
+.custom-slider .form-range::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #007bff;
+}
+
+
