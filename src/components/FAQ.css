@@ -9,14 +9,14 @@
     --sf-home-inst-min-height: 300px;
     -webkit-font-smoothing: antialiased;
     font-size: 16px;
-    color: black;
+    color: gray;
     font-family: "akzidenz-grotesk_bqregular"!important;
     line-height: normal!important;
     box-sizing: border-box;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: transparent;
+    background-color: #1f1e1e;
     width: 1296px;
     height: 405px;
     margin-left: -23px;

@@ -1,14 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as Cesium from 'cesium';
 import './Model3d.css'; // Importando el archivo CSS local
-import sound from './Wise and Foolish Virgins, Sant Quirze de Pedret.mp3'
+
+//Secció audio
+import sound1 from '../audios/A1a.mp3'
+import sound2 from '../audios/origin.mp3'
+import sound3 from '../audios/A1b.mp3'
+import sound4 from '../audios/first-decoration.mp3'
+import sound5 from '../audios/Introduction-romanesque-decoration.mp3'
+import sound6 from '../audios/Introduction-reforms.mp3'
+
+
+
+//Bootstrap
 import Card from 'react-bootstrap/Card';
 import img from '../images/nova.jpg';
 import { Form } from 'react-bootstrap';
 import { Collapse } from 'react-bootstrap';
 import { Modal, Button, Carousel } from 'react-bootstrap';
+
+//Imatges
 import layoutsegleIX from '../images/layout segle IX.jpg' //segle 9
-import layoutsegleX from '../images/layout segle X.jpg'  //segle 1
+import layoutsegleX from '../images/layout segle X.jpg'  //segle 10
 import layoutsegleXI from '../images/GM000013.jpg'  //segle 11
 import layoutsegleXII from '../images/GM000013.jpg'  //segle 12
 import layoutsegleXIII from '../images/GM000015-Floor plan restorations.jpg'  //segle 13
@@ -18,12 +31,40 @@ import firstchurch from '../images/phases9-10.png'
 import firstdecoration from '../images/firstdecoration.jpg'
 import romanesquedecoration from '../images/romanesquedecoration.jpg'
 import reforms from '../images/reforms.jpg'
+import ix from '../images/ix.jpg'
+import x from '../images/x.jpg'
+import xi from '../images/xi.jpg'
+import xii from '../images/xii.jpg'
+import xiii from '../images/xiii.jpg'
+import segleIX_1 from '../images/GM000001-Central apse.JPG'
+import segleIX_2  from '../images/GM000045-Paintings central apse-first layer.jpg'
+import segleIX_3  from '../images/GM000047-Paintings central apse-first layer.jpg'
+
+import segleXI_1 from '../images/GM000026-Paintings central apse-east wall.jpg'
+import segleXI_2 from '../images/GM000028GM000027-Paintings central apse-east wall-curtains.jpg'
+import segleXI_3 from '../images/GM000029-Paintings central apse-east wall-Apocalypse elders.jpg'
+
+import segleXIII_1 from '../images/GM000030-Paintings central apse-north wall-altar with the souls of the martyrs.jpg'
+import segleXIII_2 from '../images/GM000032-Paintings central apse-north wall-the multitude of the chosen ones.jpg'
+import segleXIII_3 from '../images/GM000033-Paintings central apse-south wall-horsemen of the apocalypse.jpg'
+
+
+//Annotorious
+import { Annotorious } from '@recogito/annotorious';
 
 
 
-let indexcamara=0;
+let indexAnnotacio=0;
 let indextileset=0;
 let segleAnterior=0;
+let wonAudio = new Audio(sound1)
+let imatgecarousel1=segleIX_1;
+let imatgecarousel2=segleIX_2;
+let imatgecarousel3=segleIX_3;
+let desc1='Bearded male with open arms in a prayerful attitude';
+let desc2='feigned curtain; dado decoration; ornamental decoration';
+let desc3='Elder of the Apocalypse; with harp; seated;not wearing crowns, but crowns suspended above the elders.';
+
 const Model3d = () => {
   const [open, setOpen] = useState(false);
 
@@ -41,7 +82,12 @@ const Model3d = () => {
     { title: "First decoration", text: "The compositions that originally occupied the back of the apse consist of two medallions with figures. One of the figures is a bearded male with open arms in a prayerful attitude. The other is a warrior on horseback and the image is enclosed by a medallion at the center of a cross. Other figures of different proportions complete the imagery, which it has not yet been possible to interpret. The paintings can be dated to the middle of the 10th or early 11th century. Source: EHEM-WP7", image: firstdecoration },
     { title: "Romanesque decoration", text: "Later, a second and more expansive layer of Romanesque-style frescoes covered the earlier paintings. The renewed decoration was the result of an ambitious iconographic programme whose authorship, as usual, is unknown. The frescoes include a complex apocalyptic cycle, quite unusual for Romanesque art in the Pyrenees. Other subjects worth noting are a rare personification of the Church and two hagiographic scenes of the martyr patron saint Cyricus and his mother Julitta. Also, a second crucifixion was painted directly over the earlier one. Source: EHEM-WP7", image: romanesquedecoration },
     { title: "Reforms in the church", text: "At some point in the 13th century, an incident of unknown nature changed the appearance of the building. One of the main consequences was that most of the Romanesque paintings were hidden behind new walls. Only the frescoes of the south apse remained uncovered.", image: reforms },
-    // Añade más según sea necesario
+    { title: "Mes contingut", text: "Mes contingut", image: reforms },
+    { title: "Mes contingut", text: "Mes contingut", image: reforms },
+    { title: "Mes contingut", text: "Mes contingut", image: reforms },
+    { title: "Mes contingut", text: "Mes contingut", image: reforms },
+    { title: "Mes contingut", text: "Mes contingut", image: reforms },
+
   ];
   const cardMaps = [
     { title: "IXth century", text: "At the end of the ninth century, a very simple church was built as part of the organisation of a territory marked by scattered settlement. The church had a nave and a quadrangular apse covered with a vault. A door in the western façade gave access to the building. Source: EHEM-WP7", image: layoutsegleIX },
@@ -58,20 +104,25 @@ const Model3d = () => {
   const cesiumContainer = useRef(null);
   const viewerRef = useRef(null);
   const assets = [2373034, 2373060, 2421313, 2421315, 2421316]
-  const wonAudio = new Audio(sound)
+  
   const tourLocations = [
     { longitude: 1.880305, latitude: 42.107272, height: 664.35, heading: 87.86, pitch: -9.82, roll: 360 },
     { longitude: 1.882769, latitude: 42.106738, height: 681.33, heading: 43.78, pitch: -18.88, roll: 360 },
     { longitude: 1.882841, latitude: 42.107545, height: 663.69, heading: 98.43, pitch: -14.43, roll: 0 },
     { longitude: 1.883610, latitude: 42.107454, height: 649.65, heading: 109.66, pitch: -4.91, roll: 0 },
+    { longitude: 1.883607, latitude: 42.107450, height: 649.65, heading: 109.66, pitch: -4.91, roll: 0 },
     { longitude: 1.883617, latitude: 42.107460, height: 647.43, heading: 111.27, pitch: 16.24, roll: 0 },
+  ]
+  /*
     { longitude: 1.883746, latitude: 42.107445, height: 649.35, heading: 304.87, pitch: -1.37, roll: 0 },
     { longitude: 1.883707, latitude: 42.107466, height: 650.45, heading: 110.86, pitch: -18.93, roll: 0 },
     { longitude: 1.883660, latitude: 42.107395, height: 649.15, heading: 108.77, pitch: -6.99, roll: 0 },
-    { longitude: 1.883707, latitude: 42.107377, height: 648.56, heading: 276.57, pitch: -2.39, roll: 0 }
+    { longitude: 1.883707, latitude: 42.107377, height: 648.56, heading: 276.57, pitch: -2.39, roll: 0 },
+    { longitude: 1.883610, latitude: 42.107404, height: 649.65, heading: 109.66, pitch: -4.91, roll: 0 }, //torre dreta
+    */
 
 
-  ];
+
   Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMmVlZDFkZC02NTljLTQ5ZDgtYWExMy0zODc1NzI5Yzk5MWUiLCJpZCI6MTc4NzY3LCJpYXQiOjE3MDAxMzg3MjZ9.yGl0rRvvjoGMDoH0qSx4t0TZMDy1r2hzRsspYZyL2zk';
 
   const [annotationsText, setAnnotationsText] = useState('');
@@ -143,11 +194,35 @@ useEffect(() => {
               try {
                 for (let i = 0; i < assets.length; i++) {
                     const tileset = await Cesium.Cesium3DTileset.fromIonAssetId(assets[i]);
+                    tileset.style = new Cesium.Cesium3DTileStyle({
+                      emissive: "true", // Hace que el tileset emita luz propia
+                      emissiveBrightness: 2.0 // Ajustar el brillo de la emisión
+                    });
+                    
                     viewerRef.current.scene.primitives.add(tileset);
                     tileset.show = i === 0; // Solo muestra el primer tileset inicialmente
                     tilesets.current.push(tileset); // Almacena la referencia del tileset en el array global
                     
                 }
+                
+                viewerRef.current.scene.globe.enableLighting = true;
+                viewerRef.current.scene.globe.lightingBrightness = 10.0; // Ajustar el brillo de la iluminación
+                viewerRef.current.scene.postProcessStage.enabled = true;
+                viewerRef.current.scene.postProcessStage.brightness = 20.0; // Ajustar la exposición
+
+                        // Coordenadas de la ubicación para simular la luz
+        const lightLongitude = 1.883610;
+        const lightLatitude = 42.107454;
+        const lightHeight = 649.65;
+
+        // Crear una luz direccional en la ubicación especificada
+        const lightPosition = Cesium.Cartesian3.fromDegrees(lightLongitude, lightLatitude, lightHeight);
+        const directionalLight = new Cesium.DirectionalLight(lightPosition);
+        directionalLight.color = new Cesium.Color(1.0, 1.0, 1.0); // Color de la luz (blanco)
+        directionalLight.intensity = 0.5; // Intensidad de la luz (mayor valor = más brillante)
+        viewerRef.current.scene.addLight(directionalLight);
+
+
             } catch (error) {
                 console.error(error);
             }
@@ -204,33 +279,38 @@ const CambiarSegle = (segle) => {
   segleAnterior=segle;
 };
 
+const CambiarAudio =(audio) =>{
+  wonAudio=new Audio(audio);
+}
 
-const moveCamera = () => {
-
-  viewerRef.current.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(
-      tourLocations[indexcamara].longitude,
-      tourLocations[indexcamara].latitude,
-      tourLocations[indexcamara].height
-    ),
-    orientation: {
-      heading: Cesium.Math.toRadians(tourLocations[indexcamara].heading),
-      pitch: Cesium.Math.toRadians(tourLocations[indexcamara].pitch),
-      roll: Cesium.Math.toRadians(tourLocations[indexcamara].roll)
-    }
-  });
-    // Actualizar el contenido de la tarjeta
-    setCardTitle(cardData[indexcamara].title);
-    setCardText(cardData[indexcamara].text);
-    setCardImage(cardData[indexcamara].image);
-    setMapTitle(cardMaps[indexcamara].title);
-    setMapText(cardMaps[indexcamara].text);
-    setMapImage(cardMaps[indexcamara].image);
-  indexcamara+=1;
-  if(indexcamara==6){
-    indexcamara=0;
+const CambiarImatgesCarrousel =(segle) =>{
+  if(segle==0){
+    imatgecarousel1=segleIX_1;
+    imatgecarousel2=segleIX_2;
+    imatgecarousel3=segleIX_3;
   }
-};
+  else if (segle==1){
+    imatgecarousel1=segleIX_1;
+    imatgecarousel2=segleIX_2;
+    imatgecarousel3=segleIX_2;
+  }
+  else if (segle==2){
+    imatgecarousel1=segleXI_1;
+    imatgecarousel2=segleXI_2;
+    imatgecarousel3=segleXI_3;
+  }
+  else if (segle==3){
+    imatgecarousel1=segleXIII_1;
+    imatgecarousel2=segleXIII_2;
+    imatgecarousel3=segleXIII_3;
+  }
+  else if (segle==4){
+    imatgecarousel1=segleXIII_1;
+    imatgecarousel2=segleXIII_2;
+    imatgecarousel3=segleXIII_3;
+  }
+
+}
 
 const [showImage, setShowImage] = useState(false);
 const [hoveredImage, setHoveredImage] = useState(layoutsegleXI);
@@ -257,12 +337,17 @@ const handleMouseOut = () => {
 
 const [sliderValue, setSliderValue] = useState(0);  // Estado para manejar la posición del slider
 const images = [
-  layoutsegleXI,
-  layoutsegleXI,
-  layoutsegleXI,
-  layoutsegleXI,
-  layoutsegleXI,
-  layoutsegleXI
+  ix,
+  ix,
+  x,
+  xi,
+  xii,
+  xiii,
+  xiii,
+  xiii,
+  xiii,
+  xiii,
+  xiii
   // Asegúrate de que este arreglo tenga tantos elementos como `tourLocations`
 ];
 
@@ -273,38 +358,65 @@ const handleSliderChange = (event) => {
   moveCameraToIndex(newIndex); // Asegúrate de tener esta función definida
   setHoveredImage(images[newIndex]); // Actualiza la imagen al cambiar el slider
   if(newIndex==0){
+    indexAnnotacio=0;
+    CambiarImatgesCarrousel(0);
     CambiarSegle(0);
+    CambiarAudio(sound1);
     setMapTitle(cardMaps[0].title);
     setMapText(cardMaps[0].text);
     setMapImage(cardMaps[0].image);
   }
   else if(newIndex==1){
+    desc1='Bearded male with open arms in a prayerful attitude';
+    indexAnnotacio=0;
+    CambiarImatgesCarrousel(0);
     CambiarSegle(0);
+    CambiarAudio(sound2);
     setMapTitle(cardMaps[0].title);
     setMapText(cardMaps[0].text);
     setMapImage(cardMaps[0].image);
 
     }
   else if(newIndex==2){
+    desc1='Bearded male with open arms in a prayerful attitude';
+    indexAnnotacio=0;
+    CambiarImatgesCarrousel(0);
     CambiarSegle(1);
+    CambiarAudio(sound3);
     setMapTitle(cardMaps[1].title);
     setMapText(cardMaps[1].text);
     setMapImage(cardMaps[1].image);
 
     }
     else if(newIndex==3){
+      desc1='Bearded male with open arms in a prayerful attitude';
+      indexAnnotacio=0;
+      CambiarImatgesCarrousel(0);
       CambiarSegle(2);
+      CambiarAudio(sound4);
       setMapTitle(cardMaps[2].title);
       setMapText(cardMaps[2].text);
       setMapImage(cardMaps[2].image);
       }
       else if(newIndex==4){
+        CambiarImatgesCarrousel(2);
+        desc1='Dextera Dei; (right) hand of God';
+        desc2='feigned curtain; dado decoration; ornamental decoration';
+        desc3='Elder of the Apocalypse; with harp; seated;not wearing crowns, but crowns suspended above the elders.';
+        indexAnnotacio=3;
         CambiarSegle(3);
+        CambiarAudio(sound5);
         setMapTitle(cardMaps[3].title);
         setMapText(cardMaps[3].text);
         setMapImage(cardMaps[3].image);
         }
         else if(newIndex==5){
+          CambiarImatgesCarrousel(3);
+          desc1='Angel with censer; winged angel; nimbed angel';
+          desc2='standard, possibly carried by an archangel';
+          desc3='horseman of the Apocalypse;red horse;second seal;';
+          indexAnnotacio=6;
+          CambiarAudio(sound6);
           CambiarSegle(4);
           setMapTitle(cardMaps[4].title);
           setMapText(cardMaps[4].text);
@@ -333,10 +445,246 @@ const moveCameraToIndex = (index) => {
 
 const [showModal, setShowModal] = useState(false);
 const showCarousel = () => setShowModal(true);
-const handleClose = () => setShowModal(false);
+
+const [anno, setAnno] = useState(null);
 
 
 
+const initialAnnotations = [
+  {
+    id: '1',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: desc1,
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:2676,909,682,710'
+      }
+    }
+  },
+  {
+    id: '2',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: desc2,
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:-100,0,0,0'
+      }
+    }
+  },
+  {
+    id: '3',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: desc3,
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:-350,0,00,00'
+      }
+    }
+  },
+  {
+    id: '4',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: 'Dextera Dei; (right) hand of God',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:1218,2047,449,356'
+      }
+    }
+  },
+  {
+    id: '5',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: '3',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:484,290,5751,3769'
+      }
+    }
+  },
+  {
+    id: '6',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: '3',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:2416,769,1712,2775'
+      }
+    }
+  },
+  {
+    id: '7',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: '3',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:834,904,2369,1950'
+      }
+    }
+  },
+  {
+    id: '8',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: '3',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:2806,446,895,1321'
+      }
+    }
+  },
+  {
+    id: '9',
+    type: 'Annotation',
+    body: [
+      {
+        type: 'TextualBody',
+        value: '3',
+        purpose: 'describing'
+      }
+    ],
+    target: {
+      selector: {
+        type: 'FragmentSelector',
+        conformsTo: 'http://www.w3.org/TR/media-frags/',
+        value: 'xywh=pixel:2416,769,1712,2775'
+      }
+    }
+  }
+];
+
+
+
+  const handleOnEntered = () => {
+  
+    // Inicializa Annotorious en modo de solo lectura
+    const annotorious = new Annotorious({
+      image: 'image-carousel1',
+      readOnly: true
+    });
+    const annotorious2 = new Annotorious({
+      image: 'image-carousel2',
+      readOnly: true
+    });
+    const annotorious3 = new Annotorious({
+      image: 'image-carousel3',
+      readOnly: true
+    });
+  
+    // Agrega las anotaciones preexistentes
+    annotorious.addAnnotation(initialAnnotations[indexAnnotacio]);
+    annotorious2.addAnnotation(initialAnnotations[indexAnnotacio+1]);
+    annotorious3.addAnnotation(initialAnnotations[indexAnnotacio+2]);
+  
+    // Obtiene todas las anotaciones agregadas al contenedor Annotorious
+    const annotations = document.querySelectorAll('.a9s-annotation');
+  
+    // Crea un div para mostrar la descripción
+    const descriptionBox = document.createElement('div');
+    descriptionBox.className = 'description-box';
+    descriptionBox.style.position = 'absolute';
+    descriptionBox.style.background = 'rgba(255, 255, 255, 0.8)';
+    descriptionBox.style.padding = '10px';
+    descriptionBox.style.border = '1px solid #ccc';
+    descriptionBox.style.borderRadius = '5px';
+    descriptionBox.style.zIndex = '10000';
+    descriptionBox.style.display = 'none'; // Oculta inicialmente el cuadro de descripción
+  
+    // Agrega el cuadro de descripción al contenedor del visor de imágenes
+    document.getElementById('cesiumContainer').appendChild(descriptionBox);
+  
+    // Itera sobre cada anotación para agregar el evento mouseover
+    annotations.forEach((annotation, index) => {
+      annotation.addEventListener('mouseover', () => {
+        // Obtiene la descripción de la anotación actual
+        const description = initialAnnotations[index].body[0].value;
+        // Muestra la descripción en el cuadro de texto
+        descriptionBox.innerHTML = description;
+        // Posiciona el cuadro de descripción encima de la anotación
+        const rect = annotation.getBoundingClientRect();
+        descriptionBox.style.top = `${rect.top - descriptionBox.offsetHeight+50}px`;
+        descriptionBox.style.left = `${rect.left}px`;
+        // Muestra el cuadro de descripción
+        descriptionBox.style.display = 'block';
+      });
+      // Agrega el evento mouseout para ocultar el cuadro de descripción cuando se mueve el mouse fuera de la anotación
+      annotation.addEventListener('mouseout', () => {
+        descriptionBox.style.display = 'none';
+      });
+    });
+  
+    // Guarda la referencia a Annotorious en el estado
+    setAnno(annotorious);
+  };
+  
+  const handleClose = () => {
+
+    setShowModal(false);
+  };
+  
+  
 
 return (
   <>
@@ -369,18 +717,20 @@ return (
       </Form.Group>
 
       <div className="text-overlay-container">
-        <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem', backgroundColor: '#212529', color: 'white' }}>
+
           <Card.Img variant="top" src={cardImage} />
           <Card.Body>
             <Card.Title>{cardTitle}</Card.Title>
             <Card.Text>{cardText}</Card.Text>
-            <Button variant="outline-dark" onClick={handleAudioPlay}>Start Audio</Button>{' '}
-            <Button variant="outline-dark" onClick={handleAudioPause}>Stop Audio</Button>{' '}
+            <Button variant="outline-light" onClick={handleAudioPlay}>Start Audio</Button>{' '}
+            <Button variant="outline-light" onClick={handleAudioPause}>Stop Audio</Button>{' '}
           </Card.Body>
         </Card>
       </div>
       <div className="text-overlay-container-ELOTRO">
-        <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '18rem', backgroundColor: '#212529', color: 'white' }}>
+
           <Card.Img variant="top" src={MapImage} />
           <Card.Body>
             <Card.Title>{MapTitle}</Card.Title>
@@ -390,39 +740,55 @@ return (
       </div>
       <div className="button-overlay-container">
       {/* Agregar el elemento de audio */}
-      <Button variant="dark" onClick={showCarousel}>GM</Button>{' '}
+      <Button variant="dark" onClick={showCarousel}>Graphic Materials</Button>{' '}
 
     </div>
-    <Modal show={showModal} onHide={handleClose} size="lg" centered>
+    <Modal show={showModal} onHide={handleClose} onEntered={handleOnEntered} className="custom-modal-size" centered>
       <Modal.Header closeButton>
-        <Modal.Title>Galería de Imágenes</Modal.Title>
+        <Modal.Title>Graphic Materials</Modal.Title>
         </Modal.Header>
-      <Modal.Body>
+        <Modal.Body>
         <Carousel>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              src={layoutsegleIX}
+              className="imagen-carousel-model3d"
+              src={imatgecarousel1}
               alt="First slide"
+              id="image-carousel1"  // Este ID se usará para Annotorious
             />
             <Carousel.Caption>
-              <h3>IX Siglo</h3>
+              <h3></h3>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
-              className="d-block w-100"
-              src={layoutsegleX}
+              className="imagen-carousel-model3d"
+              src={imatgecarousel2}
               alt="Second slide"
+              id="image-carousel2"  // Este ID se usará para Annotorious
+
             />
             <Carousel.Caption>
-              <h3>X Siglo</h3>
+              <h3></h3>
             </Carousel.Caption>
           </Carousel.Item>
-          {/* Añadir más elementos al carrusel según sea necesario */}
+          <Carousel.Item>
+            <img
+              className="imagen-carousel-model3d"
+              src={imatgecarousel3}
+              alt="Second slide"
+              id="image-carousel3"  // Este ID se usará para Annotorious
+
+            />
+            <Carousel.Caption>
+              <h3></h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+          {/* Puedes añadir más elementos al carrusel como estos */}
         </Carousel>
       </Modal.Body>
     </Modal>
+
 
   </>
 );

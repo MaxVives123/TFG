@@ -90,4 +90,66 @@
   background: #007bff;
 }
 
+.custom-modal-size {
+  max-width: 500px;  
+  height: auto;  
+  max-height: 70vh;  
+  margin: auto;  
+  position: absolute;
+  top: 50%; 
+  left: 50%;  
+  transform: translate(-50%, -50%);  
+  overflow-y: auto;  
+}
+.custom-modal-size .carousel, .custom-modal-size .carousel-item {
+  height: 100%; 
+}
+.custom-modal-size .modal-content {
+  height: 100%; /* Asegurar que el contenido del modal ocupe toda la altura asignada */
+  display: flex;
+  flex-direction: column; /* Organiza los elementos internos en una columna */
+}
+
+.custom-modal-size .modal-body {
+  flex: 1;  /* Permite que el cuerpo del modal ocupe el espacio disponible */
+  overflow: hidden; /* Evita desbordamientos */
+}
+
+.custom-modal-size img {
+  max-height: 100%; /* Ajusta la imagen para que no exceda la altura del modal */
+  max-width: 100%; /* Ajusta la imagen para que no exceda el ancho del modal */
+  object-fit: contain; /* Mantiene la relación de aspecto sin cortar la imagen */
+  margin: auto; /* Centra la imagen dentro del modal */
+}
+.imagen-carousel-model3d {
+  max-height: 20%;  /* Establece la altura máxima al 100% del contenedor padre, evitando desbordamiento vertical */
+  object-fit: contain;  /* Asegura que la imagen se ajuste dentro de su contenedor sin ser recortada, manteniendo su relación de aspecto */
+  width: auto;  /* Permite que el ancho de la imagen se ajuste automáticamente para mantener la relación de aspecto */
+  display: block;  /* Hace que la imagen se muestre como un bloque, eliminando cualquier espacio extra alrededor */
+  margin: auto;  /* Centra la imagen horizontal y verticalmente dentro de su contenedor */
+}
+.carousel-item {
+  position: relative;
+  }
+  
+
+  /* Estilos para las anotaciones */
+.a9s-annotation {
+  stroke-width: 6px; /* Aumenta el grosor del borde a 3px */
+  stroke: black; /* Cambia el color del borde a un azul tipo Google */
+  fill: transparent; /* Cambia el relleno a un azul claro y translúcido */
+
+}
+.a9s-annotationlayer {
+  position: absolute;  /* La capa de anotaciones debe ser absoluta respecto al contenedor relativo */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+
+
+
 

@@ -8,7 +8,7 @@ import './CarouselPage.css'; // Importando el archivo CSS local
 function CarouselPage() {
   return (
     
-    <Carousel fade>
+    <Carousel fade className="mi-carousel">
     <Carousel.Item>
       <img 
         className="d-block w-100"

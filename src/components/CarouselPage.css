@@ -1,9 +1,9 @@
 /* CarouselPage.css */
-.carousel-item {
+.mi-carousel-item {
   position: relative;
   }
   
-  .carousel img {
+  .mi-carousel img {
     height: 100vh;
     width: 100%;
     object-fit: cover; /* Esto evita que la imagen se distorsione */
