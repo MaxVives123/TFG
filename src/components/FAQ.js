@@ -7,13 +7,27 @@ import {
   MDBRow,
   MDBTextArea,
 } from "mdb-react-ui-kit";
+import emailjs from 'emailjs-com';
 
 export default function WithContactForm() {
-  // Estilo personalizado para inputs y textarea
+  // Custom styling for inputs and textarea
   const inputStyle = {
-    backgroundColor: '#ccc', // Fondo gris
-    color: 'white' // Texto blanco
+    backgroundColor: '#ccc', // Grey background
+    color: 'white' // White text
   };
+
+  function handleSubmit(event) {
+    event.preventDefault(); // Evita l'enviament per defecte del formulari
+
+    // Envia les dades del formulari a través de EmailJS
+    emailjs.sendForm('service_daaxeus', 'template_npfrmsa', event.target, 'pxvq4OXs5urIbaFrF')
+      .then((result) => {
+        console.log(result.text);
+      }, (error) => {
+        console.log(error.text);
+      });
+
+  }
 
   return (
     <MDBContainer className="mt-5" style={{ maxWidth: '1000px', color: 'white' }}>
@@ -22,67 +36,67 @@ export default function WithContactForm() {
           <MDBCol lg="6" md="12" className="mb-4">
             <div>
               <p className="mb-1">
-                <strong>¿Cuál es la historia de la construcción de la iglesia de Sant Quirze de Pedret?</strong>
+                <strong>What is the history of the construction of the church of Sant Quirze de Pedret?</strong>
               </p>
               <p className="mb-1">
-                <u>Una construcción que data del siglo IX.</u> A continuación, algunos puntos clave de su desarrollo histórico:
+                <u>A construction dating back to the 9th century.</u> Below are some key points of its historical development:
               </p>
               <ul>
-                <li>Orígenes en el siglo IX como una simple estructura.</li>
-                <li>Reformas y expansiones significativas durante los siglos X y XI.</li>
-                <li>Importantes obras de arte románico añadidas en el siglo XII.</li>
+                <li>Origins in the 9th century as a simple structure.</li>
+                <li>Significant reforms and expansions during the 10th and 11th centuries.</li>
+                <li>Important Romanesque artworks added in the 12th century.</li>
               </ul>
             </div>
 
             <div>
               <p className="mb-1">
-                <strong>¿Qué elementos arquitectónicos destacan en Sant Quirze de Pedret?</strong>
+                <strong>What architectural elements stand out in Sant Quirze de Pedret?</strong>
               </p>
               <p className="mb-1">
-                <u>Absides decorados y arcos de herradura.</u>
+                <u>Decorated apses and horseshoe arches.</u>
               </p>
               <p className="mb-1">
-                Características del prerrománico y transiciones al románico visible en sus frescos y estructuras.
+                Features of the pre-Romanesque and transitions to the Romanesque visible in its frescoes and structures.
               </p>
             </div>
 
             <div>
               <p className="mb-1">
                 <strong>
-                  ¿Qué significan los frescos encontrados en la iglesia de Sant Quirze de Pedret?
+                  What do the frescoes found in the church of Sant Quirze de Pedret mean?
                 </strong>
               </p>
               <p className="mb-1">
-                <u>Representaciones ricas en simbolismo religioso.</u>
+                <u>Representations rich in religious symbolism.</u>
               </p>
               <p className="mb-1">
-                Los frescos incluyen imágenes de santos, escenas del Antiguo Testamento y el Juicio Final.
+                The frescoes include images of saints, scenes from the Old Testament, and the Final Judgment.
               </p>
             </div>
 
             <div>
               <p className="mb-1">
-                <strong>¿Cuál ha sido el impacto de las restauraciones en la iglesia?</strong>
+                <strong>What has been the impact of the restorations on the church?</strong>
               </p>
               <p className="mb-1">
-                <u>Restauraciones cuidadosas han preservado su valor histórico.</u>
+                <u>Careful restorations have preserved its historical value.</u>
               </p>
               <p className="mb-1">
-                Estas han permitido recuperar y mantener la integridad de sus frescos y arquitectura.
+                These have allowed for the recovery and maintenance of the integrity of its frescoes and architecture.
               </p>
             </div>
           </MDBCol>
           <MDBCol lg="6" md="12" className="text-center">
             <p>
               <span className="fw-bold">
-                ¿Todavía tienes preguntas? ¡Contáctanos para obtener más información!
+              Email Adress
               </span>
             </p>
 
-            <form>
-              <MDBInput label="Dirección de correo electrónico" required className="mb-4" style={inputStyle} />
-              <MDBTextArea rows={4} label="" className="mb-4" style={inputStyle} />
-              <MDBBtn block style={{ backgroundColor: 'white', color: '#212529' }}>Enviar</MDBBtn>
+            <form onSubmit={handleSubmit}>
+              <MDBInput name="email" label="Still have questions? Contact us for more information!" required className="mb-4" style={inputStyle} />
+              <MDBTextArea name="message" rows={4} label="" className="mb-4" style={inputStyle} />
+              <MDBBtn type="submit" block style={{ backgroundColor: 'white', color: '#212529' }}>Enviar</MDBBtn>
             </form>
           </MDBCol>
         </MDBRow>

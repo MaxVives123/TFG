@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
 import * as Cesium from 'cesium';
 import './Model3d.css'; // Importando el archivo CSS local
 
@@ -57,7 +58,10 @@ import { Annotorious } from '@recogito/annotorious';
 let indexAnnotacio=0;
 let indextileset=0;
 let segleAnterior=0;
+
 let wonAudio = new Audio(sound1)
+
+
 let imatgecarousel1=segleIX_1;
 let imatgecarousel2=segleIX_2;
 let imatgecarousel3=segleIX_3;
@@ -187,6 +191,7 @@ useEffect(() => {
                 terrain: Cesium.Terrain.fromWorldTerrain(),
                 infoBox: false
               });
+
               viewerRef.current.clock.currentTime = Cesium.JulianDate.fromIso8601("2024-04-30T17:00:00Z");
     
     
@@ -251,6 +256,7 @@ const handleAudioPlay = () => {
     wonAudio.play();
   
 };
+
 const handleAudioPause = () => {
   wonAudio.pause();
 
@@ -351,6 +357,7 @@ const images = [
   // Asegúrate de que este arreglo tenga tantos elementos como `tourLocations`
 ];
 
+
 // Función para manejar el cambio en el slider y actualizar la cámara o la imagen
 const handleSliderChange = (event) => {
   const newIndex = parseInt(event.target.value, 10);
@@ -447,7 +454,6 @@ const [showModal, setShowModal] = useState(false);
 const showCarousel = () => setShowModal(true);
 
 const [anno, setAnno] = useState(null);
-
 
 
 const initialAnnotations = [
@@ -617,6 +623,7 @@ const initialAnnotations = [
 
 
 
+
   const handleOnEntered = () => {
   
     // Inicializa Annotorious en modo de solo lectura
@@ -624,6 +631,7 @@ const initialAnnotations = [
       image: 'image-carousel1',
       readOnly: true
     });
+
     const annotorious2 = new Annotorious({
       image: 'image-carousel2',
       readOnly: true
@@ -715,6 +723,8 @@ return (
           />
 
       </Form.Group>
+      
+      
 
       <div className="text-overlay-container">
       <Card style={{ width: '18rem', backgroundColor: '#212529', color: 'white' }}>
@@ -723,8 +733,10 @@ return (
           <Card.Body>
             <Card.Title>{cardTitle}</Card.Title>
             <Card.Text>{cardText}</Card.Text>
+
             <Button variant="outline-light" onClick={handleAudioPlay}>Start Audio</Button>{' '}
             <Button variant="outline-light" onClick={handleAudioPause}>Stop Audio</Button>{' '}
+            
           </Card.Body>
         </Card>
       </div>
@@ -740,7 +752,21 @@ return (
       </div>
       <div className="button-overlay-container">
       {/* Agregar el elemento de audio */}
+
       <Button variant="dark" onClick={showCarousel}>Graphic Materials</Button>{' '}
+      <Dropdown className="d-inline-block ml-2">
+        <Dropdown.Toggle variant="dark" id="dropdown-basic">
+          Change Century
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => CambiarSegle(0)} className="dropdown-item-dark">IX</Dropdown.Item>
+          <Dropdown.Item  onClick={() => CambiarSegle(1)} className="dropdown-item-dark">X</Dropdown.Item>
+          <Dropdown.Item onClick={() => CambiarSegle(2)} className="dropdown-item-dark">XI</Dropdown.Item>
+          <Dropdown.Item onClick={() => CambiarSegle(3)} className="dropdown-item-dark">XII</Dropdown.Item>
+          <Dropdown.Item onClick={() => CambiarSegle(4)} className="dropdown-item-dark">XIII</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
 
     </div>
     <Modal show={showModal} onHide={handleClose} onEntered={handleOnEntered} className="custom-modal-size" centered>
@@ -748,6 +774,7 @@ return (
         <Modal.Title>Graphic Materials</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
         <Carousel>
           <Carousel.Item>
             <img
@@ -784,8 +811,8 @@ return (
               <h3></h3>
             </Carousel.Caption>
           </Carousel.Item>
-          {/* Puedes añadir más elementos al carrusel como estos */}
         </Carousel>
+
       </Modal.Body>
     </Modal>
 

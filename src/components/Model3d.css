@@ -6,6 +6,20 @@
   z-index: 1001; /* Ajuste fino para asegurar que esté sobre otros elementos */
 }
 
+.dropdown-item-dark {
+  color: #ffffff; /* Color de texto blanco */
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+.dropdown-menu-dark {
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+.dropdown-menu{
+  background-color: #343a40; /* Color de fondo oscuro */
+}
+.dropdown-item-dark:hover {
+  background-color: #495057; /* Color de fondo al pasar el ratón */
+}
+
 .button-overlay {
   padding: 8px 16px;
   margin: 5px;
