@@ -1,4 +1,4 @@
-# Project Title: 3D Historical Visualizations with React and Cesium
+3D Historical Visualizations with React and Cesium
 
 ## Overview
 
