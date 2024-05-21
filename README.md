@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Project Title: 3D Historical Visualizations with React and Cesium
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project leverages modern web technologies to create interactive 3D visualizations of historical models. Using React for the frontend framework, Cesium for 3D geospatial data visualization, CesiumJS, and CesiumION for managing 3D assets, this project brings historical sites to life. The 3D models are sourced from the EHEM project (https://ehemproject.eu), and annotations on the photos are created via Annotorious, contributed by the University of Barcelona History of Art teachers.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js (>= 14.x)
+- npm (>= 6.x) or yarn (>= 1.x)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Steps
 
-### `npm run build`
+1. **Clone the repository:**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```sh
+   git clone https://github.com/your-username/3d-historical-visualizations.git
+   cd 3d-historical-visualizations
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install dependencies:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   Using npm:
 
-### `npm run eject`
+   ```sh
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   Or using yarn:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```sh
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Set up environment variables:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   Create a `.env` file in the root directory and add your CesiumION access token:
 
-## Learn More
+   ```sh
+   REACT_APP_CESIUM_ION_TOKEN=your_cesium_ion_access_token
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. **Start the development server:**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   Using npm:
 
-### Code Splitting
+   ```sh
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   Or using yarn:
 
-### Analyzing the Bundle Size
+   ```sh
+   yarn start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   Open your browser and navigate to `http://localhost:3000`.
 
-### Making a Progressive Web App
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Upon running the development server, you will see the 3D visualizations of historical models rendered on the screen. You can interact with the models using standard mouse or touch controls to zoom, pan, and rotate.
 
-### Advanced Configuration
+### Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **3D Model Viewing:** View detailed 3D models of historical sites.
+- **Photo Annotations:** View annotated photos contributed by the University of Barcelona History of Art teachers.
+- **Interactive Interface:** Navigate through models with intuitive controls.
 
-### Deployment
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```sh
+3d-historical-visualizations/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── CesiumViewer.jsx
+│   │   ├── AnnotationViewer.jsx
+│   │   └── ...
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── .env
+├── package.json
+└── README.md
+```
 
-### `npm run build` fails to minify
+- **public/**: Static files including the main HTML file.
+- **src/**: Source code for the React application.
+  - **assets/**: Static assets such as images and model files.
+  - **components/**: Reusable React components.
+  - **App.js**: Main application component.
+  - **index.js**: Entry point for the React application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature-name`).
+5. Open a pull request.
+
+Please make sure to update tests as appropriate and adhere to the coding standards.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Acknowledgements
+
+- **EHEM Project**: For providing the 3D models. [EHEM Project](https://ehemproject.eu)
+- **Cesium**: For the 3D geospatial visualization platform. [Cesium](https://cesium.com)
+- **Annotorious**: For the annotation tool. [Annotorious](https://annotorious.com)
+- **University of Barcelona History of Art Teachers**: For creating the photo annotations.
+
+## Contact
+
+For any inquiries, please contact [your-email@example.com].
+
+---
+
+We hope this project helps you in visualizing historical sites in a new and interactive way! Happy exploring!
