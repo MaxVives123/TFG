@@ -2,14 +2,13 @@
 
 ## Overview
 
-This project leverages modern web technologies to create interactive 3D visualizations of historical models. Using React for the frontend framework, Cesium for 3D geospatial data visualization, CesiumJS, and CesiumION for managing 3D assets, this project brings historical sites to life. The 3D models are sourced from the EHEM project (https://ehemproject.eu), and annotations on the photos are created via Annotorious, contributed by the University of Barcelona History of Art teachers.
+This project leverages modern web technologies to create interactive 3D visualizations of historical models. Using React for the frontend framework, Cesium for 3D geospatial data visualization, CesiumJS, and CesiumION for managing 3D assets, this project brings historical sites to life. The 3D models are sourced from the EHEM project (https://ehemproject.eu), and annotations on the photos are created via Annotorious, contributed by the University of Barcelona History of Art faculty. This project is a bachelor thesis from the Universitat Politècnica de Catalunya (UPC), Faculty of Informatics of Barcelona (FIB).
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgements](#acknowledgements)
 
@@ -74,7 +73,7 @@ Upon running the development server, you will see the 3D visualizations of histo
 ### Features
 
 - **3D Model Viewing:** View detailed 3D models of historical sites.
-- **Photo Annotations:** View annotated photos contributed by the University of Barcelona History of Art teachers.
+- **Photo Annotations:** View annotated photos contributed by the University of Barcelona History of Art faculty teachers.
 - **Interactive Interface:** Navigate through models with intuitive controls.
 
 ## Project Structure
@@ -105,17 +104,6 @@ Upon running the development server, you will see the 3D visualizations of histo
   - **App.js**: Main application component.
   - **index.js**: Entry point for the React application.
 
-## Contributing
-
-Contributions are welcome! Please follow these steps to contribute:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/your-feature-name`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/your-feature-name`).
-5. Open a pull request.
-
-Please make sure to update tests as appropriate and adhere to the coding standards.
 
 ## License
 
@@ -130,7 +118,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries, please contact [your-email@example.com].
+For any inquiries, please contact [maxvivesribera@gmail.com].
 
 ---
 
