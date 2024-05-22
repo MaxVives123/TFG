@@ -127,7 +127,7 @@ const Model3d = () => {
 
 
 
-  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMmVlZDFkZC02NTljLTQ5ZDgtYWExMy0zODc1NzI5Yzk5MWUiLCJpZCI6MTc4NzY3LCJpYXQiOjE3MDAxMzg3MjZ9.yGl0rRvvjoGMDoH0qSx4t0TZMDy1r2hzRsspYZyL2zk';
+  Cesium.Ion.defaultAccessToken = 'aqui iria el token de acceso';
 
   const [annotationsText, setAnnotationsText] = useState('');
   const [phasesText, setPhasesText] = useState('');
